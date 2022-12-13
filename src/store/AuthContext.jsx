@@ -16,7 +16,9 @@ function AuthContextProvider(props) {
   const login = (argToken) => {
     setToken(argToken);
   };
-  const logout = () => {};
+  const logout = () => {
+    setToken('');
+  };
 
   const contextValue = {
     login,

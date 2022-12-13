@@ -6,6 +6,7 @@ import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 
 function App() {
+  // App priklausomai nuo isUserLoggedIn generuoti routus
   return (
     <Layout>
       <Switch>

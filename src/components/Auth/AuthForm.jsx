@@ -35,6 +35,12 @@ const AuthForm = () => {
         import.meta.env.VITE_API_KEY
       }`;
 
+      if (regOrLogin === 'login') {
+        url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${
+          import.meta.env.VITE_API_KEY
+        }`;
+      }
+
       const [sendResult, postError] = await sendRequest(values, url);
 
       // jei turim klaidu

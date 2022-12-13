@@ -27,6 +27,7 @@ const MainNavigation = () => {
           )}
           {isUserLoggedIn && (
             <li>
+              {/* <button>Logout</button> turi iskviesti contexo logout fn */}
               <button>Logout</button>
             </li>
           )}
