@@ -1,6 +1,19 @@
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
+  // susikurti state passwordui
+
+  // prijungti password su 2 way binding
+
+  // sukurti handleSubmit funkicja
+  // sutabdyti perkrovima
+
+  // panaudoti sendRequest funkcija ir issiusti pakeisti slaptazodi
+
+  // ispausdinti atsakyma tiek sekmes tiek nesekmes atvejus
+
+  // url = https://identitytoolkit.googleapis.com/v1/accounts:update?key=[apikey]
+
   return (
     <form className={classes.form}>
       <div className={classes.control}>
@@ -12,6 +25,6 @@ const ProfileForm = () => {
       </div>
     </form>
   );
-}
+};
 
 export default ProfileForm;
