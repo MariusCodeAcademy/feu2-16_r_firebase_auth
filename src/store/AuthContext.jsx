@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 
 export const AuthContext = createContext({
-  login(token) {},
+  login({ token, email }) {},
   logout() {},
   isUserLoggedIn: false,
   token: '',
@@ -14,16 +14,21 @@ const tokenName = 'firebaseToken';
 function AuthContextProvider(props) {
   // localStorage yra sinchroninis
   const tokenFromStorage = localStorage.getItem(tokenName);
+  const emailFromStorage = localStorage.getItem('email');
   const [token, setToken] = useState(tokenFromStorage);
+  const [emailValue, setEmailValue] = useState(emailFromStorage);
   const isUserLoggedIn = !!token;
 
-  const login = (argToken) => {
-    setToken(argToken);
-    localStorage.setItem(tokenName, argToken);
+  const login = ({ token, email }) => {
+    setToken(token);
+    localStorage.setItem(tokenName, token);
+    setEmailValue(email);
+    localStorage.setItem('email', email);
   };
   const logout = () => {
     setToken('');
     localStorage.removeItem(tokenName);
+    localStorage.removeItem('email');
   };
 
   const contextValue = {
@@ -31,6 +36,7 @@ function AuthContextProvider(props) {
     logout,
     isUserLoggedIn,
     token,
+    email: emailValue,
   };
 
   return (

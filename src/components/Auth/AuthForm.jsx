@@ -55,7 +55,7 @@ const AuthForm = () => {
       }
       // nera klaidu gauti duomenys yra sendResult
       console.log('sendResult ===', sendResult);
-      ctx.login(sendResult.idToken);
+      ctx.login({ token: sendResult.idToken, email: sendResult.email });
       // jei nera klaidu naviguojam i /profile puslapi
       history.push('/profile');
     },

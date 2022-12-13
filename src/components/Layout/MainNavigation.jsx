@@ -4,8 +4,9 @@ import { useAuthCtx } from '../../store/AuthContext';
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const { isUserLoggedIn, logout } = useAuthCtx();
+  const { isUserLoggedIn, logout, email } = useAuthCtx();
 
+  console.log('email ===', email);
   // priklausomai nuo isUserLoggedIn rodyti arba nerodyti linkus
 
   return (
