@@ -1,12 +1,10 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../store/AuthContext';
+import { useAuthCtx } from '../../store/AuthContext';
 
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const ctx = useContext(AuthContext);
-  console.log('ctx ===', ctx);
+  const { isUserLoggedIn } = useAuthCtx();
 
   // priklausomai nuo isUserLoggedIn rodyti arba nerodyti linkus
 
@@ -17,15 +15,21 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          <li>
-            <Link to='/auth'>Login</Link>
-          </li>
-          <li>
-            <Link to='/profile'>Profile</Link>
-          </li>
-          <li>
-            <button>Logout</button>
-          </li>
+          {!isUserLoggedIn && (
+            <li>
+              <Link to='/auth'>Login</Link>
+            </li>
+          )}
+          {isUserLoggedIn && (
+            <li>
+              <Link to='/profile'>Profile</Link>
+            </li>
+          )}
+          {isUserLoggedIn && (
+            <li>
+              <button>Logout</button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 
 export const AuthContext = createContext({
   login(token) {},
@@ -13,7 +13,9 @@ function AuthContextProvider(props) {
 
   const isUserLoggedIn = !!token;
 
-  const login = () => {};
+  const login = (argToken) => {
+    setToken(argToken);
+  };
   const logout = () => {};
 
   const contextValue = {
@@ -30,3 +32,8 @@ function AuthContextProvider(props) {
 }
 
 export default AuthContextProvider;
+
+// custon useAuthCtx hook
+export function useAuthCtx() {
+  return useContext(AuthContext);
+}
