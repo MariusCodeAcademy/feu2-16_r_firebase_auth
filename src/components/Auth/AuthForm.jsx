@@ -1,9 +1,12 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  const history = useHistory();
+
   // pridedame formik pie projekto
   // AuthForm pradedame valdyti su formik
   // pateikiant forma ispausdiname email ir password
@@ -44,6 +47,7 @@ const AuthForm = () => {
       // nera klaidu gauti duomenys yra sendResult
       console.log('sendResult ===', sendResult);
       // jei nera klaidu naviguojam i /profile puslapi
+      history.push('/profile');
     },
   });
   console.log('formik.errors ===', formik.errors);
