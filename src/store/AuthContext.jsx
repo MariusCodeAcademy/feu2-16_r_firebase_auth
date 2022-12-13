@@ -33,7 +33,7 @@ function AuthContextProvider(props) {
 
 export default AuthContextProvider;
 
-// custon useAuthCtx hook
+// custon useAuthCtx hook 2 lvl burtas
 export function useAuthCtx() {
   return useContext(AuthContext);
 }

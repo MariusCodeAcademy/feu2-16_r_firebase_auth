@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuthCtx } from '../../store/AuthContext';
 
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  const ctx = useAuthCtx();
   const history = useHistory();
 
   // pridedame formik pie projekto
@@ -46,6 +48,7 @@ const AuthForm = () => {
       }
       // nera klaidu gauti duomenys yra sendResult
       console.log('sendResult ===', sendResult);
+      ctx.login(sendResult.idToken);
       // jei nera klaidu naviguojam i /profile puslapi
       history.push('/profile');
     },
