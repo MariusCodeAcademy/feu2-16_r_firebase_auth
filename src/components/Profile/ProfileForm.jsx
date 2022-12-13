@@ -1,5 +1,5 @@
 import classes from './ProfileForm.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { sendRequest } from '../../hepers';
 import { useAuthCtx } from '../../store/AuthContext';
 
@@ -33,11 +33,9 @@ const ProfileForm = () => {
     console.log('ats nera klaidos ===', ats);
   };
 
-  // panaudoti sendRequest funkcija ir issiusti pakeisti slaptazodi
-
-  // ispausdinti atsakyma tiek sekmes tiek nesekmes atvejus
-
-  // url = https://identitytoolkit.googleapis.com/v1/accounts:update?key=[apikey]
+  useEffect(() => {
+    // getUserInfo()
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
