@@ -1,11 +1,10 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
-import NotAuthorised from './pages/NotAuthorised';
 import { useAuthCtx } from './store/AuthContext';
 
 function App() {
@@ -17,15 +16,9 @@ function App() {
         <Route path='/' exact>
           <HomePage />
         </Route>
-
-        {/* <ProtectedRoute path='/auth'>
-          <AuthPage />
-        </ProtectedRoute> */}
-
         <Route path='/auth'>
-          <AuthPage />
+          {!isUserLoggedIn ? <AuthPage /> : <Redirect to='/' />}
         </Route>
-
         <ProtectedRoute path='/profile'>
           <UserProfile />
         </ProtectedRoute>
