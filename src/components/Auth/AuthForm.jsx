@@ -22,9 +22,18 @@ const AuthForm = () => {
       // register or login
       const regOrLogin = isLogin ? 'login' : 'register';
       console.log('values ===', values, 'mode', regOrLogin);
+
+      // jei regOrLogin === register
+      // tai url = https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
+
+      let url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]';
+
+      sendRequest(values, url);
     },
   });
 
+  // console.log('VITE_API_KEY ===', import.meta.env);
   return (
     <section className={classes.auth}>
       <h2 style={{ color: 'white' }}>
@@ -68,3 +77,8 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
+async function sendRequest(whatToSend, url) {
+  // issiusti su fetch post requesta ir paduoti i body duomenis is whatToSend
+  // isspausdinti atsakykma
+}
