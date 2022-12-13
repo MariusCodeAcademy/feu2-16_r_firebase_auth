@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
+import ProtectedRoute from './components/ProtectedRoute';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 import NotAuthorised from './pages/NotAuthorised';
@@ -22,11 +23,12 @@ function App() {
         </ProtectedRoute> */}
 
         <Route path='/auth'>
-          {!isUserLoggedIn ? <AuthPage /> : <NotAuthorised />}
+          <AuthPage />
         </Route>
-        <Route path='/profile'>
-          {isUserLoggedIn ? <UserProfile /> : <NotAuthorised />}
-        </Route>
+
+        <ProtectedRoute path='/profile'>
+          <UserProfile />
+        </ProtectedRoute>
       </Switch>
     </Layout>
   );

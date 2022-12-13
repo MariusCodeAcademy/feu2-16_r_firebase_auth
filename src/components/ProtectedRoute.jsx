@@ -1,6 +1,13 @@
 import { Route } from 'react-router-dom';
+import NotAuthorised from '../pages/NotAuthorised';
+import { useAuthCtx } from './../store/AuthContext';
 
-function ProtectedRoute(props) {
-  return <Route path={props.path}>{props.children}</Route>;
+function ProtectedRoute({ children, ...restOfProps }) {
+  const { isUserLoggedIn } = useAuthCtx();
+  return (
+    <Route {...restOfProps}>
+      {isUserLoggedIn ? children : <NotAuthorised />}
+    </Route>
+  );
 }
 export default ProtectedRoute;
