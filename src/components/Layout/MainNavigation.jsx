@@ -4,7 +4,7 @@ import { useAuthCtx } from '../../store/AuthContext';
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const { isUserLoggedIn } = useAuthCtx();
+  const { isUserLoggedIn, logout } = useAuthCtx();
 
   // priklausomai nuo isUserLoggedIn rodyti arba nerodyti linkus
 
@@ -28,7 +28,7 @@ const MainNavigation = () => {
           {isUserLoggedIn && (
             <li>
               {/* <button>Logout</button> turi iskviesti contexo logout fn */}
-              <button>Logout</button>
+              <button onClick={logout}>Logout</button>
             </li>
           )}
         </ul>

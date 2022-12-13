@@ -59,7 +59,7 @@ const AuthForm = () => {
       history.push('/profile');
     },
   });
-  console.log('formik.errors ===', formik.errors);
+  // console.log('formik.errors ===', formik.errors);
   // console.log('VITE_API_KEY ===', import.meta.env);
   return (
     <section className={classes.auth}>
