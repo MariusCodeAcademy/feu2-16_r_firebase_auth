@@ -26,8 +26,9 @@ const AuthForm = () => {
       // jei regOrLogin === register
       // tai url = https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
-      let url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]';
+      let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${
+        import.meta.env.VITE_API_KEY
+      }`;
 
       sendRequest(values, url);
     },
@@ -79,6 +80,19 @@ const AuthForm = () => {
 export default AuthForm;
 
 async function sendRequest(whatToSend, url) {
+  try {
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(whatToSend),
+    });
+    const result = await resp.json();
+    console.log('result ===', result);
+  } catch (error) {
+    console.warn('klaida sendRequest', error);
+  }
   // issiusti su fetch post requesta ir paduoti i body duomenis is whatToSend
   // isspausdinti atsakykma
+  // isspausdinti gauta idTokena
+  // issiusti uzklausa su jau sukurtu email dar karta ir isspausdinti klaida.
 }
