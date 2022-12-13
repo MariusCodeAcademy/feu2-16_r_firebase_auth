@@ -4,6 +4,7 @@ export const AuthContext = createContext({
   login(token) {},
   logout() {},
   isUserLoggedIn: false,
+  token: '',
 });
 
 AuthContext.displayName = 'Auth-context';
@@ -29,6 +30,7 @@ function AuthContextProvider(props) {
     login,
     logout,
     isUserLoggedIn,
+    token,
   };
 
   return (
