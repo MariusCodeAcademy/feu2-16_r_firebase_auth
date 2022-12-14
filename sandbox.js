@@ -1,32 +1,4 @@
-import { fireObjToArr } from '../hepers';
-import useFetch from './../hooks/useFetch';
-function PostPage(props) {
-  const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
-
-  const [dataFromFireB, setDataFromFireB] = useFetch(url, {});
-
-  const dataArr = fireObjToArr(dataFromFireB);
-
-  console.log('dataArr ===', dataArr);
-  // console.log('dataFromFireB ===', dataFromFireB);
-  // console.log(JSON.stringify(dataFromFireB, null, 2));
-  return (
-    <div className='container'>
-      <h1>PostPage</h1>
-      <p>cia bus postai</p>
-
-      <ul>
-        {/* mapinti per dataArr */}
-        <li>post 1</li>
-        <li>post 2</li>
-        <li>post 3</li>
-      </ul>
-    </div>
-  );
-}
-export default PostPage;
-
-const dataWeGot = {
+const dataObj = {
   '-NJEdBd3xSbnT-BUfZr0': {
     archived: false,
     body: 'Fire base is almost easy',
@@ -56,3 +28,19 @@ const dataWeGot = {
     userId: 'QqkLofip94dHqaXRdrwrI12rUOC2',
   },
 };
+
+function fireObjToArr(fireObj) {
+  const dataArr = [];
+  for (const key in fireObj) {
+    // su spred
+    //dataArr.push({ id: key, ...fireObj[key] });
+    // console.log('key ===', key);
+    const value = fireObj[key];
+    value.id = key;
+    // console.log('value ===', value);
+    dataArr.push(value);
+  }
+  console.log('dataArr ===', dataArr);
+  return dataArr;
+}
+fireObjToArr(dataObj);

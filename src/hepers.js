@@ -34,3 +34,23 @@ export async function sendRequest(whatToSend, url) {
 function test() {
   // useState(); // neveikia, turi buti komponentas arba custom hook
 }
+
+/**
+ * Transoms firebase objet of objects to array with id
+ * @param {object} fireObj
+ * @returns [{id, data}]
+ */
+export function fireObjToArr(fireObj) {
+  const dataArr = [];
+  for (const key in fireObj) {
+    // su spred
+    //dataArr.push({ id: key, ...fireObj[key] });
+    // console.log('key ===', key);
+    const value = fireObj[key];
+    value.id = key;
+    // console.log('value ===', value);
+    dataArr.push(value);
+  }
+  console.log('dataArr ===', dataArr);
+  return dataArr;
+}
