@@ -24,7 +24,7 @@ function PostPage(props) {
     // send Patch
     const urlDelPost = `${
       import.meta.env.VITE_REAL_DB_URL
-    }/firePost/posts/${id}.json?auth="${token}"`;
+    }/firePost/posts/${id}.json?auth=${token}`;
 
     const [ats, err] = await sendPatchRequest(urlDelPost);
     console.log('ats ===', ats);

@@ -18,11 +18,13 @@ const dummyPost = {
 // extra prideti title validacija
 
 function AddPost(props) {
-  const { uid } = useAuthCtx();
+  const { uid, token } = useAuthCtx();
   const handleNewPost = async () => {
     console.log('dummyPost ===', dummyPost);
 
-    const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
+    const url = `${
+      import.meta.env.VITE_REAL_DB_URL
+    }/firePost/posts.json?auth=${token}`;
     console.log('url ===', url);
 
     // pasiimti userId is contexto ir irasyti i dummyPost pries issiunciant
