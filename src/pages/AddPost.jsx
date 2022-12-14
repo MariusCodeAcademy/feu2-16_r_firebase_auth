@@ -31,6 +31,7 @@ function AddPost(props) {
     const [ats, err] = await sendRequest(dummyPost, url);
     console.log('err ===', err);
     console.log('ats ===', ats);
+    // redirect to /posts
   };
 
   return (

@@ -77,3 +77,12 @@ export function fireObjToArr(fireObj) {
   console.log('dataArr ===', dataArr);
   return dataArr;
 }
+
+export const getData = async (from) => {
+  try {
+    const resp = await fetch(from);
+    return [await resp.json(), null];
+  } catch (error) {
+    return [null, error];
+  }
+};

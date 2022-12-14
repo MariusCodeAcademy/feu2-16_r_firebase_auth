@@ -1,16 +1,9 @@
-import { fireObjToArr, sendPatchRequest } from '../hepers';
+import { fireObjToArr, getData, sendPatchRequest } from '../hepers';
+import { useAuthCtx } from '../store/AuthContext';
 import useFetch from './../hooks/useFetch';
 
-const getData = async (from) => {
-  try {
-    const resp = await fetch(from);
-    return [await resp.json(), null];
-  } catch (error) {
-    return [null, error];
-  }
-};
-
 function PostPage(props) {
+  const { token } = useAuthCtx();
   // pakeisti url. prideti parametrus kad maytumetik neistrintus postus
   const queryParams = '?orderBy="archived"&equalTo=false';
   const url = `${
@@ -31,7 +24,7 @@ function PostPage(props) {
     // send Patch
     const urlDelPost = `${
       import.meta.env.VITE_REAL_DB_URL
-    }/firePost/posts/${id}.json`;
+    }/firePost/posts/${id}.json?auth="${token}"`;
 
     const [ats, err] = await sendPatchRequest(urlDelPost);
     console.log('ats ===', ats);
