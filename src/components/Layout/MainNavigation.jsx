@@ -33,6 +33,11 @@ const MainNavigation = () => {
           )}
           {isUserLoggedIn && (
             <li>
+              <Link to='/add-post'>Create Post</Link>
+            </li>
+          )}
+          {isUserLoggedIn && (
+            <li>
               {/* <button>Logout</button> turi iskviesti contexo logout fn */}
               <button onClick={logout}>Logout</button>
             </li>
