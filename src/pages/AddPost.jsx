@@ -9,6 +9,14 @@ const dummyPost = {
   userId: '',
   archived: false,
 };
+
+// AddPost
+// sukurti arba pernaudoti AddPostForm.jsx
+// sukurti forma, sudeti inputus,
+// suvaldyti su formik
+// onSumit issiusti taip pat kaip handleNewPost
+// extra prideti title validacija
+
 function AddPost(props) {
   const { uid } = useAuthCtx();
   const handleNewPost = async () => {

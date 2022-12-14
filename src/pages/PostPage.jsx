@@ -1,6 +1,7 @@
 import { fireObjToArr, sendPatchRequest } from '../hepers';
 import useFetch from './../hooks/useFetch';
 function PostPage(props) {
+  // pakeisti url. prideti parametrus kad maytumetik neistrintus postus
   const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
 
   const [dataFromFireB, setDataFromFireB] = useFetch(url, {});
@@ -23,6 +24,9 @@ function PostPage(props) {
     console.log('ats ===', ats);
     console.log('err ===', err);
   };
+
+  // sukurti ar pernaudoti SinglePost.jsx
+  // su juo atvaizuoti postus
 
   return (
     <div className='container'>
