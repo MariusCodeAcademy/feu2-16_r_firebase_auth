@@ -1,4 +1,4 @@
-import { fireObjToArr } from '../hepers';
+import { fireObjToArr, sendPatchRequest } from '../hepers';
 import useFetch from './../hooks/useFetch';
 function PostPage(props) {
   const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
@@ -10,6 +10,20 @@ function PostPage(props) {
   console.log('dataArr ===', dataArr);
   // console.log('dataFromFireB ===', dataFromFireB);
   // console.log(JSON.stringify(dataFromFireB, null, 2));
+
+  const deleteHandler = async (id) => {
+    console.log('i amd deliting', id);
+
+    // send Patch
+    const urlDelPost = `${
+      import.meta.env.VITE_REAL_DB_URL
+    }/firePost/posts/${id}.json`;
+
+    const [ats, err] = await sendPatchRequest(urlDelPost);
+    console.log('ats ===', ats);
+    console.log('err ===', err);
+  };
+
   return (
     <div className='container'>
       <h1>PostPage</h1>
@@ -17,9 +31,13 @@ function PostPage(props) {
 
       <ul>
         {/* mapinti per dataArr */}
-        <li>post 1</li>
-        <li>post 2</li>
-        <li>post 3</li>
+        {dataArr.map((pObj) => (
+          <li key={pObj.id}>
+            <h2>{pObj.title}</h2>
+            <img src={pObj.image} alt={pObj.title} />
+            <button onClick={() => deleteHandler(pObj.id)}>Delete</button>
+          </li>
+        ))}
       </ul>
     </div>
   );

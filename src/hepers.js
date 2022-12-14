@@ -30,6 +30,29 @@ export async function sendRequest(whatToSend, url) {
   // isspausdinti gauta idTokena
   // issiusti uzklausa su jau sukurtu email dar karta ir isspausdinti klaida.
 }
+export async function sendPatchRequest(url) {
+  try {
+    const resp = await fetch(url, {
+      method: 'PATCH',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ archived: true }),
+    });
+    if (!resp.ok) {
+      throw await resp.json();
+    }
+    const result = await resp.json();
+    // console.log('result ===', result);
+    // viskas ivyko gerai
+    return [result, null];
+  } catch (error) {
+    // console.warn('klaida sendRequest', error);
+    return [null, error];
+  }
+  // issiusti su fetch post requesta ir paduoti i body duomenis is whatToSend
+  // isspausdinti atsakykma
+  // isspausdinti gauta idTokena
+  // issiusti uzklausa su jau sukurtu email dar karta ir isspausdinti klaida.
+}
 
 function test() {
   // useState(); // neveikia, turi buti komponentas arba custom hook
