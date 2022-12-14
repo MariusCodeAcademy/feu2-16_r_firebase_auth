@@ -1,8 +1,21 @@
 import { fireObjToArr, sendPatchRequest } from '../hepers';
 import useFetch from './../hooks/useFetch';
+
+const getData = async (from) => {
+  try {
+    const resp = await fetch(from);
+    return [await resp.json(), null];
+  } catch (error) {
+    return [null, error];
+  }
+};
+
 function PostPage(props) {
   // pakeisti url. prideti parametrus kad maytumetik neistrintus postus
-  const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
+  const queryParams = '?orderBy="archived"&equalTo=false';
+  const url = `${
+    import.meta.env.VITE_REAL_DB_URL
+  }/firePost/posts.json${queryParams}`;
 
   const [dataFromFireB, setDataFromFireB] = useFetch(url, {});
 
@@ -22,7 +35,15 @@ function PostPage(props) {
 
     const [ats, err] = await sendPatchRequest(urlDelPost);
     console.log('ats ===', ats);
-    console.log('err ===', err);
+    if (err) {
+      console.log('err ===', err);
+      return;
+    }
+
+    // neturim klaidos
+    const [data, errorGet] = await getData(url);
+    console.log('errorGet ===', errorGet);
+    setDataFromFireB(data);
   };
 
   // sukurti ar pernaudoti SinglePost.jsx
