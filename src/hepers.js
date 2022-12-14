@@ -1,4 +1,5 @@
 /**
+import { useState } from 'react';
  *
  * @param {object} whatToSend
  * @param {string} url
@@ -7,7 +8,7 @@
 export async function sendRequest(whatToSend, url) {
   try {
     // test url
-    console.log('url ===', url);
+    // console.log('url ===', url);
     const resp = await fetch(url, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -28,4 +29,8 @@ export async function sendRequest(whatToSend, url) {
   // isspausdinti atsakykma
   // isspausdinti gauta idTokena
   // issiusti uzklausa su jau sukurtu email dar karta ir isspausdinti klaida.
+}
+
+function test() {
+  // useState(); // neveikia, turi buti komponentas arba custom hook
 }

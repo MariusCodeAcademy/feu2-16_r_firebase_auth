@@ -7,13 +7,14 @@ import { useAuthCtx } from '../../store/AuthContext';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  // contexto contextValues gavimas i ctx reiksme
   const ctx = useAuthCtx();
   const history = useHistory();
 
   // pridedame formik pie projekto
   // AuthForm pradedame valdyti su formik
   // pateikiant forma ispausdiname email ir password
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
