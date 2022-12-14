@@ -1,3 +1,4 @@
+import AddPostForm from '../components/Posts/AddPostForm';
 import { sendRequest } from '../hepers';
 import { useAuthCtx } from '../store/AuthContext';
 
@@ -19,18 +20,16 @@ const dummyPost = {
 
 function AddPost(props) {
   const { uid, token } = useAuthCtx();
-  const handleNewPost = async () => {
-    console.log('dummyPost ===', dummyPost);
+  const handleNewPost = async (formValues) => {
+    console.log('formValues ===', formValues);
 
-    const url = `${
-      import.meta.env.VITE_REAL_DB_URL
-    }/firePost/posts.json?auth=${token}`;
+    const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
     console.log('url ===', url);
 
     // pasiimti userId is contexto ir irasyti i dummyPost pries issiunciant
     // pridejom userId is contexto
-    dummyPost.userId = uid;
-    const [ats, err] = await sendRequest(dummyPost, url);
+    formValues.userId = uid;
+    const [ats, err] = await sendRequest(formValues, url);
     console.log('err ===', err);
     console.log('ats ===', ats);
     // redirect to /posts
@@ -39,8 +38,8 @@ function AddPost(props) {
   return (
     <div className='container'>
       <h1>AddPost</h1>
-      <p>cia bus forma</p>
-      <button onClick={handleNewPost}>Create post</button>
+      <AddPostForm onNewPost={handleNewPost} />
+      {/* <button onClick={handleNewPost}>Create post</button> */}
     </div>
   );
 }
