@@ -19,6 +19,11 @@ function AuthContextProvider(props) {
   const [emailValue, setEmailValue] = useState(emailFromStorage);
   const isUserLoggedIn = !!token;
 
+  // AuthContextProvider
+  // sukurti state userId
+  // issaugoti userId kai prisiloginam
+  // perduoti i contextValue userId
+
   const login = ({ token, email }) => {
     setToken(token);
     localStorage.setItem(tokenName, token);
