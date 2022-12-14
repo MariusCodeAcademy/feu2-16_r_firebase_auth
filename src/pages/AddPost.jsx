@@ -1,14 +1,16 @@
 import { sendRequest } from '../hepers';
+import { useAuthCtx } from '../store/AuthContext';
 
 // values
 const dummyPost = {
-  image: 'https://picsum.photos/id/17/200/300',
-  title: 'First fireBase post',
-  body: 'Fire base is almost easy',
-  userId: '6LUz1yxPpMR5bpqF0m14xTOqFPh1',
+  image: 'https://picsum.photos/id/18/600/400',
+  title: 'Fourth fireBase post',
+  body: 'Fourth learned firebase today',
+  userId: '',
   archived: false,
 };
 function AddPost(props) {
+  const { uid } = useAuthCtx();
   const handleNewPost = async () => {
     console.log('dummyPost ===', dummyPost);
 
@@ -16,7 +18,8 @@ function AddPost(props) {
     console.log('url ===', url);
 
     // pasiimti userId is contexto ir irasyti i dummyPost pries issiunciant
-
+    // pridejom userId is contexto
+    dummyPost.userId = uid;
     const [ats, err] = await sendRequest(dummyPost, url);
     console.log('err ===', err);
     console.log('ats ===', ats);
