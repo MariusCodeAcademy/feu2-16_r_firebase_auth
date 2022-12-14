@@ -5,6 +5,7 @@ import UserProfile from './components/Profile/UserProfile';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import PostPage from './pages/PostPage';
 import { useAuthCtx } from './store/AuthContext';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/profile'>
           <UserProfile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts'>
+          <PostPage />
         </ProtectedRoute>
       </Switch>
     </Layout>
