@@ -4,5 +4,5 @@ export default function useRedirect(whereTo) {
   if (!whereTo) return;
   const history = useHistory();
 
-  return () => history.push(whereTo);
+  return history.push(whereTo);
 }

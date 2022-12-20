@@ -11,7 +11,9 @@ export async function sendRequest(whatToSend, url) {
     // console.log('url ===', url);
     const resp = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      headers: {
+        'Content-type': 'application/json',
+      },
       body: JSON.stringify(whatToSend),
     });
     if (!resp.ok) {
@@ -30,11 +32,14 @@ export async function sendRequest(whatToSend, url) {
   // isspausdinti gauta idTokena
   // issiusti uzklausa su jau sukurtu email dar karta ir isspausdinti klaida.
 }
-export async function sendPatchRequest(url) {
+export async function sendPatchRequest(url, token) {
   try {
     const resp = await fetch(url, {
       method: 'PATCH',
-      headers: { 'Content-type': 'application/json' },
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ archived: true }),
     });
     if (!resp.ok) {

@@ -4,14 +4,17 @@ import useFetch from './../hooks/useFetch';
 
 function PostPage(props) {
   const { token } = useAuthCtx();
+  console.log(JSON.stringify(token));
   // pakeisti url. prideti parametrus kad maytumetik neistrintus postus
-  const queryParams = '?orderBy="archived"&equalTo=false';
+  const queryParams = `?auth=${token}`;
   const url = `${
     import.meta.env.VITE_REAL_DB_URL
   }/firePost/posts.json${queryParams}`;
 
   const [dataFromFireB, setDataFromFireB] = useFetch(url, {});
-
+  console.log('dataFromFireB ===', dataFromFireB);
+  // if (!Object.keys(dataFromFireB).length) return null;
+  return null;
   const dataArr = fireObjToArr(dataFromFireB);
 
   console.log('dataArr ===', dataArr);
@@ -24,9 +27,9 @@ function PostPage(props) {
     // send Patch
     const urlDelPost = `${
       import.meta.env.VITE_REAL_DB_URL
-    }/firePost/posts/${id}.json?auth=${token}`;
+    }/firePost/posts/${id}.json?access_token=${token}`;
 
-    const [ats, err] = await sendPatchRequest(urlDelPost);
+    const [ats, err] = await sendPatchRequest(urlDelPost, token);
     console.log('ats ===', ats);
     if (err) {
       console.log('err ===', err);

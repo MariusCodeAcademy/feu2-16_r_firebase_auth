@@ -2,15 +2,6 @@ import AddPostForm from '../components/Posts/AddPostForm';
 import { sendRequest } from '../hepers';
 import { useAuthCtx } from '../store/AuthContext';
 
-// values
-const dummyPost = {
-  image: 'https://picsum.photos/id/18/600/400',
-  title: 'Fourth fireBase post',
-  body: 'Fourth learned firebase today',
-  userId: '',
-  archived: false,
-};
-
 // AddPost
 // sukurti arba pernaudoti AddPostForm.jsx
 // sukurti forma, sudeti inputus,
@@ -23,12 +14,15 @@ function AddPost(props) {
   const handleNewPost = async (formValues) => {
     console.log('formValues ===', formValues);
 
-    const url = `${import.meta.env.VITE_REAL_DB_URL}/firePost/posts.json`;
+    const url = `${
+      import.meta.env.VITE_REAL_DB_URL
+    }/firePost/posts.json?auth=${token}`;
     console.log('url ===', url);
 
     // pasiimti userId is contexto ir irasyti i dummyPost pries issiunciant
     // pridejom userId is contexto
     formValues.userId = uid;
+    formValues.idToken = token;
     const [ats, err] = await sendRequest(formValues, url);
     console.log('err ===', err);
     console.log('ats ===', ats);
